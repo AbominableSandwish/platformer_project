@@ -39,7 +39,7 @@ void Character::jump(float angle, bool* isJumping) {
 	if (!*isJumping)
 	{
 		b2Vec2 vel = m_body->GetLinearVelocity();
-		vel.y = -200.f;//upwards - don't change x velocity
+		vel.y = -200.f;//upwards - don't change x velocit
 		vel.x = m_body->GetLinearVelocity().x;
 		m_body->SetLinearVelocity(vel);
 		*isJumping = true;
