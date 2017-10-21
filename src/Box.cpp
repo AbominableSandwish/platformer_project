@@ -1,6 +1,6 @@
 //box.cpp file
 #include "Box.h"
-const int PPM = 30;
+const int PPM = 64;
 
 int CBox::n = 0;
 

@@ -37,22 +37,38 @@ int main()
 
 
 	body ground;
-	ground.RECT = sf::RectangleShape(sf::Vector2f(800, 25));//100-50? is size?
+	ground.RECT = sf::RectangleShape(sf::Vector2f(300, 25));//100-50? is size?
 	ground.RECT.setOrigin(0, -WINDOW_HEIGTH+25);
 	ground.RECT.setFillColor(sf::Color(200, 75, 20, 255));
 
 	ground.DEF.position.Set(0, WINDOW_HEIGTH-25);
 	ground.DEF.type = b2_staticBody;
 
-	ground.SHAPE.SetAsBox(400.0f, 25.f);
+	ground.SHAPE.SetAsBox(280.0f, 25.f);
 	
 	ground.FIX.shape = &ground.SHAPE;
 	ground.FIX.density = .7f;
-	ground.FIX.friction = .9f;
+	ground.FIX.friction = 1.f;
 
 	ground.BOD = (*world).CreateBody(&ground.DEF);
 	ground.BOD->CreateFixture(&ground.SHAPE, 1.0f);
 
+	body ground2;
+	ground2.RECT = sf::RectangleShape(sf::Vector2f(300, 25));//100-50? is size?
+	ground2.RECT.setOrigin(-500, -WINDOW_HEIGTH + 25);
+	ground2.RECT.setFillColor(sf::Color(200, 75, 20, 255));
+
+	ground2.DEF.position.Set(700, WINDOW_HEIGTH - 25);
+	ground2.DEF.type = b2_staticBody;
+
+	ground2.SHAPE.SetAsBox(200.0f, 25.f);
+
+	ground2.FIX.shape = &ground2.SHAPE;
+	ground2.FIX.density = .7f;
+	ground2.FIX.friction = 1.f;
+
+	ground2.BOD = (*world).CreateBody(&ground2.DEF);
+	ground2.BOD->CreateFixture(&ground2.SHAPE, 1.0f);
 	
 	//Image image(std::string("data/image.png"));
 	while (window.isOpen())
@@ -66,12 +82,26 @@ int main()
 				window.close();
 			if (event.type == sf::Event::KeyPressed)
 			{
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+					shape_charact.jump(90);
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+					shape_charact.Move(50);
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+					shape_charact.Move(-50);
+				}
 			}
+			
 		}
 		window.clear();
 		//image.draw(window);
+		std::cout << ground.DEF.position.y<< " ";
+		std::cout << shape_charact.getBody()->GetPosition().y+50<< "\n ";
+		if(ground.DEF.position.y == shape_charact.pos_x){}
 		
 		window.draw(ground.RECT);
+		window.draw(ground2.RECT);
 	
 		//window.draw(shape_earth.shape_map);
 		window.draw(shape_charact.GetShape());
