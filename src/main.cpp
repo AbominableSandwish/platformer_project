@@ -85,9 +85,13 @@ int main()
 			if (event.type == sf::Event::KeyPressed)
 			{
 				
-				if (shape_charact.getBody()->GetPosition().y + 50 >574.985)
+				if (shape_charact.getBody()->GetPosition().y + 50 > 574.985 && shape_charact.getBody()->GetPosition().y + 50 < 575 )
 				{
 					isJumping = false;
+				}
+				if (shape_charact.getBody()->GetPosition().y + 50 > 575)
+				{
+					isJumping = true;
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 						shape_charact.jump(90, &isJumping);

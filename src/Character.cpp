@@ -9,7 +9,7 @@ Character::Character(double _pos_x, double _pos_y, double _width, double _height
 	sh_character.setOrigin(0, 0);
 	sh_character.setFillColor(sf::Color::Blue);
 
-	m_bodyDef.position.Set(0,500);
+	m_bodyDef.position.Set(0,525);
 	m_bodyDef.type = b2_dynamicBody;
 
 	m_bodyShape.SetAsBox(25.0f, 25.0f);
