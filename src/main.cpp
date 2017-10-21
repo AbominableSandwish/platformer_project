@@ -5,7 +5,6 @@
 #include "Character.h"
 #include <Box2D/Box2D.h>
 #include <string>
-#include "Box.h"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGTH 600
@@ -36,18 +35,25 @@ int main()
 	Character shape_charact(0, 0, 50, 50);
 	shape_charact.SetWorld(*world);
 
+
 	body ground;
-	ground.DEF.position.Set(400.0f / PPM, 6000.0f / PPM);
-	ground.RECT = sf::RectangleShape(sf::Vector2f(8000, 25));//100-50? is size?
-	ground.RECT.setOrigin(4000, 600);
+	ground.RECT = sf::RectangleShape(sf::Vector2f(800, 25));//100-50? is size?
+	ground.RECT.setOrigin(0, -WINDOW_HEIGTH+25);
 	ground.RECT.setFillColor(sf::Color(200, 75, 20, 255));
-	ground.SHAPE.SetAsBox(4000.0f / PPM, 25.0f / PPM);
-	ground.BOD = (*world).CreateBody(&ground.DEF);
+
+	ground.DEF.position.Set(0, WINDOW_HEIGTH-25);
+	ground.DEF.type = b2_staticBody;
+
+	ground.SHAPE.SetAsBox(400.0f, 25.f);
+	
 	ground.FIX.shape = &ground.SHAPE;
 	ground.FIX.density = .7f;
 	ground.FIX.friction = .9f;
+
+	ground.BOD = (*world).CreateBody(&ground.DEF);
 	ground.BOD->CreateFixture(&ground.SHAPE, 1.0f);
-	std::cout << 400.0f / PPM <<"  "<< 600.0f / PPM;
+
+	
 	//Image image(std::string("data/image.png"));
 	while (window.isOpen())
 	{
@@ -65,7 +71,6 @@ int main()
 		window.clear();
 		//image.draw(window);
 		
-		ground.RECT.setPosition(ground.BOD->GetPosition().x*PPM, ground.BOD->GetPosition().y*PPM);
 		window.draw(ground.RECT);
 	
 		//window.draw(shape_earth.shape_map);

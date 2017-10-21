@@ -6,12 +6,14 @@ const int PPM = 30;
 Character::Character(double _pos_x, double _pos_y, double _width, double _height) : Rectangle(_pos_x, _pos_y, _width, _height)
 {
 	sh_character = sf::RectangleShape(sf::Vector2f((float)this->width, (float)this->height));//(0,0,10,10,sf::Color(255,255,255));
-	sh_character.setOrigin(25, 25);
+	sh_character.setOrigin(0, 0);
 	sh_character.setFillColor(sf::Color::Blue);
-	sh_character.setPosition(sf::Vector2f((float)this->pos_x, (float)this->pos_y));
-	m_bodyDef.position.Set(300.0f / PPM, 300.0f / PPM);
+
+	m_bodyDef.position.Set(0,0);
 	m_bodyDef.type = b2_dynamicBody;
-	m_bodyShape.SetAsBox(25.0f / PPM, 25.0f / PPM);
+
+	m_bodyShape.SetAsBox(25.0f, 25.0f);
+
 	m_bodyFix.shape = &m_bodyShape;
 	m_bodyFix.density = 0.1f;
 	m_bodyFix.friction = 0.1f;
