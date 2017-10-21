@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MAP_H
+#define MAP_H
 #include "Shapes.h"
 #include "Character.h"
 
@@ -13,7 +14,5 @@ public:
 	//attributs
 	sf::RectangleShape shape_map;
 	bool CheckCollind(Character);
-
-
 };
-
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SHAPES_H
+#define SHAPES_H
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -47,3 +48,4 @@ public:
 	double r;
 	sf::CircleShape sh_circle;
 };
+#endif

@@ -1,10 +1,10 @@
 //box.h
-#ifndef BOX_H_
-#define BOX_H_
+#ifndef BOX_H
+#define BOX_H
 #include <Box2D/Box2D.h>
 #include <SFML/Graphics.hpp>
 
-//i added this too, just for fun/show BHN
+//We added this too, just for fun/show BHN
 sf::Color randColor();
 
 class CBox
@@ -29,7 +29,4 @@ public:
 	int getN() { return n; }
 	~CBox();
 };
-
-
-
 #endif

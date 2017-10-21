@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CHARACTER_H
+#define CHARACTER_H
 #include "Shapes.h"
 #include <Box2D/Box2D.h>
 #include <SFML/Graphics.hpp>
@@ -26,3 +27,4 @@ public:
 	void setPosition(double _pos_x, double _pos_y);
 	~Character();
 };
+#endif 
