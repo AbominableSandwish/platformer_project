@@ -23,6 +23,8 @@ float32 timeStep = 1 / 30.0f;      //the length of time passed to simulate (seco
 int32 velocityIterations = 8;   //how strongly to correct velocity
 int32 positionIterations = 3;   //how strongly to correct position
 
+bool isJumping = false;
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGTH,64), "SFML works!");
@@ -82,9 +84,12 @@ int main()
 				window.close();
 			if (event.type == sf::Event::KeyPressed)
 			{
+				
+				
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-					shape_charact.jump(90);
-				}
+						shape_charact.jump(90, &isJumping);
+					}
+				
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 					shape_charact.Move(50);
 				}
@@ -96,6 +101,10 @@ int main()
 		}
 		window.clear();
 		//image.draw(window);
+		/*if (shape_charact.getBody()->GetPosition().y + 50 == )
+		{
+
+		}*/
 		std::cout << ground.DEF.position.y<< " ";
 		std::cout << shape_charact.getBody()->GetPosition().y+50<< "\n ";
 		if(ground.DEF.position.y == shape_charact.pos_x){}

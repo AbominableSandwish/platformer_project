@@ -19,7 +19,7 @@ public:
 	//b2Body* GetBody(); // Get Box2d body
 	sf::Shape & GetShape();
 	void update(); // Get SFML shape
-	void jump(float angle);
+	void jump(float angle, bool*);
 	void Move(float delta_move_x);
 	void ResetPosition(b2World & world); //this one is me too BHN resets shapes
 	//void jump(float angle);

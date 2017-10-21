@@ -34,12 +34,16 @@ sf::Shape & Character::GetShape() {
 	return sh_character;
 }
 
-void Character::jump(float angle) {
+void Character::jump(float angle, bool* isJumping) {
 	//m_body->SetAngularVelocity(angle);
-	b2Vec2 vel = m_body->GetLinearVelocity();
-	vel.y = -200.f;//upwards - don't change x velocity
-	vel.x = m_body->GetLinearVelocity().x;
-	m_body->SetLinearVelocity(vel);
+	if (isJumping == false)
+	{
+		b2Vec2 vel = m_body->GetLinearVelocity();
+		vel.y = -200.f;//upwards - don't change x velocity
+		vel.x = m_body->GetLinearVelocity().x;
+		m_body->SetLinearVelocity(vel);
+		*isJumping = true;
+	}
 }
 
 void Character::Move(float delta_move_x) {
