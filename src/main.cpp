@@ -30,7 +30,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGTH,64), "SFML works!");
 	window.setFramerateLimit(60.f);
 
-	b2Vec2 gravity(0.0f, 9.8f);
+	b2Vec2 gravity(0.0f, 10.f);
 	b2World* world = new b2World(gravity);
 
 	Map shape_earth(0, WINDOW_HEIGTH - 50, 250, 50);
@@ -85,11 +85,15 @@ int main()
 			if (event.type == sf::Event::KeyPressed)
 			{
 				
-				
+				if (shape_charact.getBody()->GetPosition().y + 50 >574.985)
+				{
+					isJumping = false;
+				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 						shape_charact.jump(90, &isJumping);
 					}
 				
+
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 					shape_charact.Move(50);
 				}
@@ -101,10 +105,7 @@ int main()
 		}
 		window.clear();
 		//image.draw(window);
-		/*if (shape_charact.getBody()->GetPosition().y + 50 == )
-		{
-
-		}*/
+		
 		std::cout << ground.DEF.position.y<< " ";
 		std::cout << shape_charact.getBody()->GetPosition().y+50<< "\n ";
 		if(ground.DEF.position.y == shape_charact.pos_x){}

@@ -36,7 +36,7 @@ sf::Shape & Character::GetShape() {
 
 void Character::jump(float angle, bool* isJumping) {
 	//m_body->SetAngularVelocity(angle);
-	if (isJumping == false)
+	if (!*isJumping)
 	{
 		b2Vec2 vel = m_body->GetLinearVelocity();
 		vel.y = -200.f;//upwards - don't change x velocity
