@@ -46,7 +46,8 @@ void Character::jump(float angle, bool* isJumping) {
 	}
 }
 
-void Character::Move(float delta_move_x) {
+void Character::Move(float delta_move_x) 
+{
 	//m_body->SetAngularVelocity(angle);
 	b2Vec2 vel = m_body->GetLinearVelocity();
 	vel.x = delta_move_x;//upwards - don't change x velocity
