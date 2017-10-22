@@ -11,9 +11,6 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGTH 600
 
-const int PPM = 30;
-
-
 float32 timeStep = 1 / 30.0f;      //the length of time passed to simulate (seconds)
 int32 velocityIterations = 8;   //how strongly to correct velocity
 int32 positionIterations = 3;   //how strongly to correct position
@@ -66,8 +63,42 @@ int main()
 
 	ground2.BOD = (*world).CreateBody(&ground2.DEF);
 	ground2.BOD->CreateFixture(&ground2.SHAPE, 1.0f);
+
+	body ground3;
+	ground3.RECT = sf::RectangleShape(sf::Vector2f(300, 25));//100-50? is size?
+	ground3.RECT.setOrigin(-500, -500);
+	ground3.RECT.setFillColor(sf::Color(200, 75, 20, 255));
+
+	ground3.DEF.position.Set(700, -500);
+	ground3.DEF.type = b2_staticBody;
+
+	ground3.SHAPE.SetAsBox(200.0f, 25.f);
+
+	ground3.FIX.shape = &ground3.SHAPE;
+	ground3.FIX.density = .7f;
+	ground3.FIX.friction = 1.f;
+
+	ground3.BOD = (*world).CreateBody(&ground3.DEF);
+	ground3.BOD->CreateFixture(&ground3.SHAPE, 1.0f);
+
+	body ground4;
+	ground4.RECT = sf::RectangleShape(sf::Vector2f(300, 25));//100-50? is size?
+	ground4.RECT.setOrigin(0, -400);
+	ground4.RECT.setFillColor(sf::Color(200, 75, 20, 255));
+
+	ground4.DEF.position.Set(0, -400);
+	ground4.DEF.type = b2_staticBody;
+
+	ground4.SHAPE.SetAsBox(200.0f, 25.f);
+
+	ground4.FIX.shape = &ground4.SHAPE;
+	ground4.FIX.density = .7f;
+	ground4.FIX.friction = 1.f;
+
+	ground4.BOD = (*world).CreateBody(&ground4.DEF);
+	ground4.BOD->CreateFixture(&ground3.SHAPE, 1.0f);
 	
-	//Image image(std::string("data/image.png"));
+
 	while (window.isOpen())
 	{
 		world->Step(timeStep, velocityIterations, positionIterations);
@@ -103,15 +134,11 @@ int main()
 			
 		}
 		window.clear();
-		//image.draw(window);
-		
-		std::cout << ground1.DEF.position.y<< " ";
-		std::cout << shape_charact.getBody()->GetPosition().y+50<< "\n ";
 		
 		window.draw(ground1.RECT);
 		window.draw(ground2.RECT);
-	
-		//window.draw(shape_earth.shape_map);
+		window.draw(ground3.RECT);
+		window.draw(ground4.RECT);
 		window.draw(shape_charact.GetShape());
 		window.display();
 	}
